@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: demo
+  config:
+    activate:
+      on-profile: default
+  aop:
+    auto: true
+    proxy-target-class: true
+  pid:
+    file: pid #pid文件名
+  cloud:
+    loadbalancer:
+      cache:
+        ttl: 5s
+        enabled: false
+
+
+datasource:
+  book:
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&connectTimeout=300&socketTimeout=3000&serverTimezone=Asia/Shanghai
+    username: root
+    password:
+    connectionTimeout: 250
+    maximumPoolSize: 10
+    minimumIdle: 2
+    idleTimeout: 600000 #This property controls the maximum amount of time that a connection is allowed to sit idle in the pool
+    maxLifetime: 3600000 #This property controls the maximum lifetime of a connection in the pool
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #数据库字段下划线映射java对象属性用驼峰命名
+
+
+server:
+  port: 12601
+  tomcat:
+    connection-timeout: 60000 #Time in milliseconds that connectors will wait for another HTTP request before closing the connection.
+    accept-count: 1024 # Maximum queue length for incoming connection requests when all possible request processing threads are in use.
+    max-connections: 100000 # Maximum number of connections that the server will accept and process at any given time.
+    threads:
+      max: 256
+      min-spare: 32
+  servlet:
+    encoding:
+      enabled: true
+      charset: utf-8
+
